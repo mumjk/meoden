@@ -8,6 +8,23 @@ alt w đánh dấu 1 đoạn văn bản nhanh -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NFSW</title>
     <style>
+      body {
+        background-image: url("../kho anh/img/nfsw/z5783616758086_8b0d7d2a6921625f0f02e6f5fdb617fa.jpg");
+        background-size: cover;
+        background-position: center;
+        position: relative;
+      }
+      body::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: inherit;
+        filter: blur(10px);
+        z-index: -1;
+      }
       li {
         font-size: 25px;
       }
