@@ -167,11 +167,12 @@
 
     <script>
       // Kiểm tra LocalStorage khi tải trang
-      window.onload = function () {
-        if (localStorage.getItem("ageConfirmed") === "yes") {
-          document.getElementById("blur-overlay").style.display = "none"; // Ẩn xác nhận nếu đã đồng ý trước đó
+      document.addEventListener("DOMContentLoaded", function () {
+        // Kiểm tra nếu đã xác nhận trước đó
+        if (localStorage.getItem("ageVerified") === "true") {
+          document.getElementById("blur-overlay").classList.add("hidden");
         }
-      };
+      });
       function checkAge() {
         let yes = document.getElementById("yes").checked;
         let no = document.getElementById("no").checked;
