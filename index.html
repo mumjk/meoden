@@ -80,7 +80,11 @@
         background-size: cover;
         background-position: center;
         position: relative;
+        margin: 0;
+        padding: 0;
       }
+
+      /* Làm mờ nền web */
       body::after {
         content: "";
         position: absolute;
@@ -92,14 +96,48 @@
         filter: blur(15px);
         z-index: -1;
       }
+
+      /* Lớp phủ mờ toàn bộ trang khi xác nhận tuổi */
+      #blur-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+
+      /* Hộp thông báo */
+      .popup {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        width: 300px;
+        z-index: 1001; /* Giữ hộp xác nhận ở trên */
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        position: relative;
+      }
+
+      /* Ẩn phần xác nhận sau khi chọn */
+      .hidden {
+        display: none;
+      }
+
       .center {
         font-size: 40px;
         background: pink;
         text-align: center;
         color: palevioletred;
         text-shadow: 3px 3px 0 #000, -3px -3px 0 #000, 3px -3px 0 #000,
-          -3px 3px 0 #000; /* Tạo viền chữ bằng cách sử dụng text-shadow */
+          -3px 3px 0 #000;
       }
+
       h2 {
         font-size: 30px;
         background: rgb(240, 130, 148);
@@ -107,6 +145,7 @@
         text-shadow: 3px 3px 0 #000, -3px -3px 0 #000, 3px -3px 0 #000,
           -3px 3px 0 #000;
       }
+
       h3 {
         font-size: 30px;
         background: rgb(220, 74, 233);
@@ -114,6 +153,42 @@
     </style>
   </head>
   <body>
+    <!-- Lớp phủ làm mờ toàn bộ trang -->
+    <div id="blur-overlay">
+      <div class="popup">
+        <h2>Bạn đã trên 18 tuổi chưa?</h2>
+        <label> <input type="radio" name="age" id="yes" /> Yes, I am </label>
+        <br />
+        <label> <input type="radio" name="age" id="no" /> No, I am not </label>
+        <br /><br />
+        <button onclick="checkAge()">Submit</button>
+      </div>
+    </div>
+
+    <script>
+      // Kiểm tra LocalStorage khi tải trang
+      window.onload = function () {
+        if (localStorage.getItem("ageConfirmed") === "yes") {
+          document.getElementById("blur-overlay").style.display = "none"; // Ẩn xác nhận nếu đã đồng ý trước đó
+        }
+      };
+      function checkAge() {
+        let yes = document.getElementById("yes").checked;
+        let no = document.getElementById("no").checked;
+        let overlay = document.getElementById("blur-overlay");
+
+        if (yes) {
+          overlay.style.display = "none"; // Ẩn hộp xác nhận + lớp phủ mờ
+        } else if (no) {
+          document.body.style.background = "white"; // Đổi nền thành trắng
+          document.body.innerHTML =
+            "<h1 style='text-align: center; font-size: 50px; color: red;'>Nhỏ Lo học đi ở đó xem sẽ</h1>";
+        } else {
+          alert("Vui lòng chọn một tùy chọn!"); // Cảnh báo nếu chưa chọn
+        }
+      }
+    </script>
+
     <h1 class="center">TỔNG HỢP ANIME</h1>
     <table>
       <tr>
