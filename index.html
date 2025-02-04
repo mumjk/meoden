@@ -166,6 +166,9 @@
     </div>
 
     <script>
+      if (localStorage.getItem("ageVerified") === "true") {
+        document.getElementById("blur-overlay").style.display = "none";
+      }
       // Kiểm tra LocalStorage khi tải trang
       function checkAge() {
         let yes = document.getElementById("yes").checked;
