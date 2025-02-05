@@ -16,7 +16,7 @@ body::after {
   right: 0;
   bottom: 0;
   background: inherit;
-  filter: blur(15px);
+  filter: blur(3px);
   z-index: -1;
 }
 
@@ -58,21 +58,25 @@ label {
 
 .center {
   font-size: 40px;
+  border: 20px ridge palevioletred;
   background: pink;
   text-align: center;
   color: palevioletred;
   text-shadow: 3px 3px 0 #000, -3px -3px 0 #000, 3px -3px 0 #000,
     -3px 3px 0 #000;
 }
-
+td {
+  border: 10px solid black;
+}
 h2 {
   font-size: 40px;
+  border: 20px ridge rgb(248, 93, 170);
   background: pink;
   color: rgb(255, 0, 255);
   border-radius: 10px;
 }
 
 h3 {
-  font-size: 30px;
-  background: rgb(220, 74, 233);
+  font-size: 40px;
+  text-align: center;
 }
